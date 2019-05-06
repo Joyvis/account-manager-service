@@ -6,7 +6,8 @@ class ApplicationController < ActionController::API
   end
 
   def render_error(result)
-    render json: serialize_json(result), status: :unprocessable_entity
+    render json: { errors: result.errors.messages },
+             status: :unprocessable_entity
   end
 
   private
