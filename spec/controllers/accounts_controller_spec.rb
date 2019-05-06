@@ -35,7 +35,6 @@ RSpec.describe AccountsController, type: :controller do
       it do
         expect(response).to have_http_status(:unauthorized)
       end
-
     end
   end
 end
