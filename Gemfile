@@ -10,6 +10,10 @@ gem 'fast_jsonapi', '~> 1.5'
 gem 'ransack', '~> 2.1.1'
 gem 'rack-cors', '~> 1.0.3'
 gem 'pg', '~> 1.1.4'
+gem 'bcrypt', '~> 3.1.7'
+gem 'jwt', '~> 2.1.0'
+gem 'simple_command', '~> 0.0.9'
+gem 'request_store', '~> 1.4.1'
 
 group :test do
   gem 'factory_bot_rails'

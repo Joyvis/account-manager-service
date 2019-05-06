@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
+  before_action :authenticate_request
+  attr_reader :current_user
+
   def render_success(result, options: {})
     render json: serialize_json(result, options), status: :ok
   end
@@ -22,5 +25,10 @@ class ApplicationController < ActionController::API
   def result_type(result)
     result = result.first if result.respond_to?(:map)
     "#{result.class.name}Serializer".constantize
+  end
+
+  def authenticate_request
+    @current_user = AuthorizeApiRequest.call(request.headers).result
+    render json: { error: 'Not Authorized' }, status: 401 unless @current_user
   end
 end

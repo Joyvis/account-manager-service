@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe TransfersController, type: :controller do
   describe 'creating a transfer' do
     before do
+      request.headers['Authorization'] = RequestStore.store[:token]
       post :create, params: { transfer: transfer_params }
     end
 
