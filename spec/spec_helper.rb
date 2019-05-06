@@ -13,4 +13,12 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  config.before(:each) do |test|
+    unless test.metadata[:token_auth]
+      user = create(:user)
+      token = AuthenticateUser.new(user.email, user.password).call
+      RequestStore.store[:token] = "Bearer #{token.result}"
+    end
+  end
 end
