@@ -23,7 +23,8 @@ RSpec.describe Transfer, type: :model do
       let(:account) { create(:account) }
       let(:transfer) do
         build(:transfer, source_account_id: account.id,
-                         destination_account_id: account.id)
+                         destination_account_id: account.id,
+                         amount: 1)
       end
 
       subject { transfer.valid? }
@@ -31,6 +32,20 @@ RSpec.describe Transfer, type: :model do
       it 'transfer not created' do
         is_expected.to be_falsey
       end
+    end
+
+    context 'insufficient funds' do
+      let(:source_account) { create(:account, initial_deposit: 2) }
+
+      let(:transfer) do
+        build(:transfer, source_account_id: source_account.id,
+                         destination_account_id: create(:account).id,
+                         amount: 999)
+      end
+
+      subject { transfer.valid? }
+
+      it { is_expected.to be_falsey }
     end
   end
 end
