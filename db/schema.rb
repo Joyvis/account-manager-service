@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_06_095727) do
+ActiveRecord::Schema.define(version: 2019_05_06_110246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 2019_05_06_095727) do
     t.float "amount"
     t.index ["destination_account_id"], name: "index_transfers_on_destination_account_id"
     t.index ["source_account_id"], name: "index_transfers_on_source_account_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "transfers", "accounts", column: "destination_account_id"

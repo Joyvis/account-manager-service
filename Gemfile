@@ -24,9 +24,21 @@ gem 'puma', '~> 3.11'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'fast_jsonapi', '~> 1.5'
+gem 'ransack', '~> 2.1.1'
+gem 'rack-cors', '~> 1.0.3'
+gem 'pg', '~> 1.1.4'
+gem 'bcrypt', '~> 3.1.7'
+gem 'jwt', '~> 2.1.0'
+gem 'simple_command', '~> 0.0.9'
+gem 'request_store', '~> 1.4.1'
 
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+group :test do
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  gem 'simplecov', require: false
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
