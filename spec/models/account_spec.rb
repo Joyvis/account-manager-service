@@ -23,10 +23,10 @@ RSpec.describe Account, type: :model do
                            amount: 50)]
       end
 
-      subject { accounts.last.calcule_balance }
+      subject { accounts.last.calculate_balance }
 
       it 'balance calculated' do
-        is_expected.to eq(150)
+        is_expected.to eq(accounts.last.initial_deposit + 150)
       end
     end
   end

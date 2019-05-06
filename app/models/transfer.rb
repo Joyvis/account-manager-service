@@ -10,4 +10,12 @@ class Transfer < ApplicationRecord
   validates :amount, numericality: { greater_than_or_equal_to: 1 }
   validates :destination_account_id,
             exclusion: { in: ->(transfer) { [transfer.source_account_id] } }
+  with_options if: :valid_until_now? do
+    validate :source_account_balance
+  end
+
+  def source_account_balance
+    negative_balance = (source_account.calculate_balance - amount).negative?
+    errors.add(:transfer, 'Insufficient funds') if negative_balance
+  end
 end
