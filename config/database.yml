@@ -1,6 +1,6 @@
 # PostgreSQL. Versions 9.1 and up are supported.
 #
-# Install the pg driver:
+#k Install the pg driver:
 #   gem install pg
 # On OS X with Homebrew:
 #   gem install pg -- --with-pg-config=/usr/local/bin/pg_config
@@ -15,15 +15,16 @@
 # gem 'pg'
 #
 default: &default
+  host: <%= ENV['DB_PG_HOST'] %>
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['DB_PG_USERNAME'] %>
+  password: <%= ENV['DB_PG_PASSWORD'] %>
 
 development:
   <<: *default
-  database: account_manager_service_development
+  database: <%= ENV['DB_PG_NAME']  %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
