@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class TransfersController < ApplicationController
-    def create
+  def create
     transfer = Transfer.new(transfer_params)
     if transfer.save
       render_success transfer

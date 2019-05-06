@@ -8,8 +8,10 @@ RSpec.describe Transfer, type: :model do
       it { is_expected.to validate_presence_of(:source_account_id) }
       it { is_expected.to validate_presence_of(:destination_account_id) }
       it { is_expected.to validate_presence_of(:amount) }
-      it { is_expected.to validate_numericality_of(:amount)
-            .is_greater_than_or_equal_to(1)}
+      it do
+        is_expected.to validate_numericality_of(:amount)
+          .is_greater_than_or_equal_to(1)
+      end
     end
 
     context 'relationships' do
